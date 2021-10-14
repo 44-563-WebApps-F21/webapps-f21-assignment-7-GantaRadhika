@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <title>setTimeout use</title>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,7 +11,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Radhika Ganta reaction timer</h1>
+  <h1>Radhika Ganta reaction timer</h1>
+
   <h2>Timeout - Red in 3 seconds</h2>
 
   <button type="button"
@@ -23,23 +25,41 @@
   onclick="recordReact()">
   React Now</button>
   
-  <p id="target">Your time </p>
+  
+ 
+  <p id="target">Your time</p>
   <p id="countdown">Count</p>
   
   <script> 
-   var myTime=undefined;
+  var myTime=undefined;
   function recordReact() {
           
           myTime = Date.now();
           console.log("Current Time in milliseconds is: " + myTime);
 
         }
+        function startTime() {
+            myTime = undefined;
+            buttonTime = Date.now();
 
-  function buttonPress2() {
-    setTimeout(()=>{
-      document.getElementById('target').style.color = "red"
-    }, 3000)
-  }
+            for(let i=0;i<4;i++){
+              setTimeout(() => {
+                  document.getElementById("countdown").innerHTML = i;
+                }, (3-i)*1000);
+            }
+
+              setTimeout(() => {
+                if(myTime == undefined){
+                  document.getElementById("target").innerHTML = "Too Slow";
+                }
+                
+                else{
+                  let elapsedTime = (-1) * (buttonTime - myTime);
+                  document.getElementById("target").innerHTML = "Time was "+elapsedTime;
+                }
+              }, 3000)
+            }
+
   </script>
 
 </body>
